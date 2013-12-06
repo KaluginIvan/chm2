@@ -25,10 +25,28 @@ void slae::iteration()
     }
 }
 
-void slae::gaussSeidel( myVector & oX, int iMaxIter, int oIterCount )
+double slae::residual()
+{
+    myVector temp( m_A.getSize() );
+    double out;
+    m_A.multVect( m_AprX, temp );
+    temp.subt( m_Rez, temp );
+    out = temp.norm() / m_Rez.norm();
+    return out;
+}
+
+void slae::gaussSeidel( myVector & oX, int iMaxIter, int & oIterCount, double iEps )
 {
     int k;
-    for( k = 0; k < iMaxIter; ++k)
+    double res = 1;
+    for( k = 0; k < iMaxIter && res > iEps; ++k )
+    {
         iteration();
+        res = residual();
+    }
     oX = m_AprX;
+    oIterCount = k;
 }
+
+
+

@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <iostream>
+#include "myvector.h"
 
 class diagMatr
 {
@@ -19,6 +20,7 @@ public:
     diagMatr( std::istream & iStream );
     int getIndex( int iNum );
     int getSize();
+    void multVect( myVector & iVect, myVector & oVect );
     std::vector< double >& operator[] ( int iIndex )
     {
         return m_Matr[ iIndex ];

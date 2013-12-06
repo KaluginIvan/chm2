@@ -34,3 +34,20 @@ int diagMatr::getSize()
 {
     return m_Size;
 }
+
+void diagMatr::multVect( myVector & iVect, myVector & oVect )
+{
+    int i, j, index;
+    double sum;
+    for( i = 0; i < m_Size; ++i )
+    {
+        sum = 0;
+        for( j = 0; j < 7; ++j )
+        {
+            index = i + m_Index[ j ];
+            if( index > -1 && index < m_Size )
+                sum += m_Matr[ i ][ j ] * iVect[ index ];
+        }
+        oVect[ i ] = sum;
+    }
+}

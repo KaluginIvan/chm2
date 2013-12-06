@@ -11,15 +11,19 @@ private:
 public:
     myVector(){}
     myVector( std::istream & iStream );
+    myVector( int iSize );
+    int getSize();
     double& operator []( int iIndex )
     {
         return m_Vect[ iIndex ];
     }
-    myVector& operator =(const myVector& iVect )
+    myVector& operator =( myVector& iVect )
     {
         m_Vect = iVect.m_Vect;
         return *this;
     }
+    void subt( myVector & iVect1, myVector & iVect2 );
+    double norm();
 };
 
 #endif // MYVECTOR_H
